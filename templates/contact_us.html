@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us - Hiit-Student-Staff Management System{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <!-- Header Section -->
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bold text-white mb-3">
+                <i class="fas fa-envelope me-3"></i>
+                Contact Us
+            </h1>
+            <p class="lead text-white-50">
+                Get in touch with us for any questions or support regarding the Hiit-Student-Staff Management System
+            </p>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="card">
+            <div class="card-body p-5">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="first_name" class="form-label">First Name *</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="last_name" class="form-label">Last Name *</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" name="phone">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">Subject *</label>
+                        <select class="form-select" id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="Technical Support">Technical Support</option>
+                            <option value="Student Registration Issue">Student Registration Issue</option>
+                            <option value="Staff Management Issue">Staff Management Issue</option>
+                            <option value="General Inquiry">General Inquiry</option>
+                            <option value="Feature Request">Feature Request</option>
+                            <option value="Bug Report">Bug Report</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="message" class="form-label">Message *</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" 
+                                  placeholder="Please describe your inquiry or issue in detail..." required></textarea>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-paper-plane me-2"></i>Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-map-marker-alt fa-2x text-primary mb-3"></i>
+                        <h5 class="card-title">Address</h5>
+                        <p class="card-text text-muted">
+                            Opposite gt bank<br>
+                            Garki Area 3<br>
+                            FCT Abuja, Nigeria
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-phone fa-2x text-success mb-3"></i>
+                        <h5 class="card-title">Phone</h5>
+                        <p class="card-text text-muted">
+                            Main: (234) 123-4567<br>
+                            Support: (234) 123-4568<br>
+                            
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-envelope fa-2x text-info mb-3"></i>
+                        <h5 class="card-title">Email</h5>
+                        <p class="card-text text-muted">
+                            info@sms.edu<br>
+                            support@sms.edu<br>
+                            admin@sms.edu
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Office Hours -->
+        <div class="card mt-4">
+            <div class="card-body text-center">
+                <h5 class="card-title">
+                    <i class="fas fa-clock me-2"></i>Office Hours
+                </h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="mb-1"><strong>Monday - Friday:</strong></p>
+                        <p class="text-muted">8:00 AM - 6:00 PM</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="mb-1"><strong>Saturday:</strong></p>
+                        <p class="text-muted">9:00 AM - 6:00 PM</p>
+                    </div>
+                </div>
+                <p class="text-muted mb-0">
+                    <small>Closed on Sundays and public holidays</small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

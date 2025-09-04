@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block title %}Staff Records{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="text-success">
+                    <i class="fas fa-user-tie me-2"></i>Staff Records
+                </h2>
+                <a href="{% url 'add_staff' %}" class="btn btn-success">
+                    <i class="fas fa-plus me-2"></i>Add New Staff
+                </a>
+            </div>
+
+            {% if staff_members %}
+                <div class="card shadow">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-list me-2"></i>All Staff Members ({{ staff_members.count }})
+                        </h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover mb-0">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Staff ID</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Designation</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Added</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for staff in staff_members %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>
+                                            <strong>{{ staff.full_name }}</strong>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-primary">{{ staff.staff_id }}</span>
+                                        </td>
+                                        <td>
+                                            <i class="fas fa-envelope me-1 text-muted"></i>
+                                            {{ staff.email }}
+                                        </td>
+                                        <td>
+                                            <i class="fas fa-phone me-1 text-muted"></i>
+                                            {{ staff.phone_number }}
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-success">{{ staff.designation }}</span>
+                                        </td>
+                                        <td>
+                                            <small class="text-muted">{{ staff.home_address|truncatechars:30 }}</small>
+                                        </td>
+                                        <td>
+                                            <small class="text-muted">
+                                                <i class="fas fa-calendar me-1"></i>
+                                                {{ staff.created_at|date:"M d, Y" }}
+                                            </small>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Cards -->
+                <div class="row mt-4">
+                    <div class="col-md-3">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body text-center">
+                                <i class="fas fa-users fa-2x mb-2"></i>
+                                <h4>{{ staff_members.count }}</h4>
+                                <small>Total Staff</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-info text-white">
+                            <div class="card-body text-center">
+                                <i class="fas fa-chalkboard-teacher fa-2x mb-2"></i>
+                                <h4>{{ staff_members|length|add:0 }}</h4>
+                                <small>Active Members</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-success text-white">
+                            <div class="card-body text-center">
+                                <i class="fas fa-briefcase fa-2x mb-2"></i>
+                                <h4>{{ designations_count|default:6 }}</h4>
+                                <small>Designations</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-warning text-white">
+                            <div class="card-body text-center">
+                                <i class="fas fa-calendar fa-2x mb-2"></i>
+                                <h4>{{ staff_members.first.created_at|date:"M" }}</h4>
+                                <small>Latest Addition</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="card shadow">
+                    <div class="card-body text-center py-5">
+                        <i class="fas fa-user-tie fa-3x text-muted mb-3"></i>
+                        <h4 class="text-muted">No Staff Members Found</h4>
+                        <p class="text-muted mb-4">There are no staff members added to the system yet.</p>
+                        <a href="{% url 'add_staff' %}" class="btn btn-success">
+                            <i class="fas fa-plus me-2"></i>Add First Staff Member
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
